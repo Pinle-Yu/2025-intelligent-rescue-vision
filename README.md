@@ -4,10 +4,17 @@
 
 我主要负责视觉部分。从采集和标注数据开始，完成模型训练和数据增强，再将 YOLOv8 转换为 YOLOv8 INT8 量化模型，最后部署到 MaixCAM Pro 上运行。本仓库保留了设备端程序、量化模型、部署配置和实测结果。
 
+## 实际运行画面
+
+<p align="center">
+  <img src="assets/runtime-target-detection.jpg" alt="MaixCAM 多类别目标识别画面" width="45%">
+  <img src="assets/runtime-safe-area.jpg" alt="MaixCAM 安全区识别画面" width="45%">
+</p>
+
 ## 项目流程
 
 <p align="center">
-  <img src="assets/project-pipeline.svg" alt="数据采集、训练、量化与端侧部署流程" width="760">
+  <img src="assets/project-pipeline.png" alt="数据采集、训练、量化与端侧部署流程" width="760">
 </p>
 
 ## 具体工作
@@ -27,7 +34,7 @@ MaixCAM Pro 基于算能 SG2002 SoC，包含 INT8 NPU、RISC-V C906 处理器和
 ## 比赛场地
 
 <p align="center">
-  <img src="assets/rescue_competition_field_layout.svg" alt="智能救援比赛场地平面图" width="400">
+  <img src="assets/competition-field.png" alt="智能救援比赛场地平面图" width="400">
 </p>
 
 ## 主要结果
@@ -44,7 +51,7 @@ MaixCAM Pro 基于算能 SG2002 SoC，包含 INT8 NPU、RISC-V C906 处理器和
 ## 运行截图
 
 <p align="center">
-  <img src="assets/device-demo.jpg" alt="MaixCAM Pro 实机运行画面" width="340">
+  <img src="assets/maixcam-device.jpg" alt="MaixCAM Pro 实机运行画面" width="340">
 </p>
 
 ## 仓库结构
@@ -58,9 +65,11 @@ MaixCAM Pro 基于算能 SG2002 SoC，包含 INT8 NPU、RISC-V C906 处理器和
 │   └── help_int8.cvimodel     # YOLOv8 INT8 量化部署模型
 ├── assets/
 │   ├── app.png                # 应用图标
-│   ├── project-pipeline.svg   # 项目流程图
-│   ├── device-demo.jpg        # 实机运行照片
-│   └── rescue_competition_field_layout.svg  # 比赛场地示意图
+│   ├── project-pipeline.png   # 项目流程图
+│   ├── competition-field.png # 比赛场地示意图
+│   ├── runtime-target-detection.jpg  # 多类别目标识别画面
+│   ├── runtime-safe-area.jpg  # 安全区识别画面
+│   └── maixcam-device.jpg     # MaixCAM Pro 实机照片
 ├── LICENSE
 └── README.md
 ```
