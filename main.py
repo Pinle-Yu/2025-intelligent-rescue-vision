@@ -1,9 +1,7 @@
 import os
 
-from maix import image, camera, display, uart, nn, app, touchscreen, time
+from maix import image, camera, display, uart, nn, app, touchscreen
 from struct import pack
-
-from maix._maix.time import fps
 
 # 初始化检测器、摄像头和显示器
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -300,11 +298,8 @@ while not app.need_exit():
         text_color = COLOR_RED if current_team == "red" else COLOR_BLUE
         img.draw_string(0, 60, status_msg, color=text_color, scale=2, thickness=2)
         img.draw_string(0, 180, hex(now_status), color=text_color, scale=2, thickness=2)
-        img.draw_string(0, 220, f"FPS: {time.fps():.1f}", color=COLOR_GREEN, scale=2, thickness=2)
 
     # 按钮常驻显示，保证可点
-    # print("%.2f"%time.fps())
-    # img.draw_string(0, 220, f"FPS: {time.fps():.1f}", color=COLOR_GREEN, scale=2, thickness=2)
     draw_buttons(img)
     dis.show(img)
 
