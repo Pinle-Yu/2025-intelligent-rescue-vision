@@ -13,6 +13,12 @@
 3. 在抓取校验和安全区投放阶段切换视觉状态；
 4. 将目标坐标、面积和状态码通过串口发送给机器人下位机。
 
+## 比赛场地示意图
+
+<p align="center">
+  <img src="assets/rescue_competition_field_layout.svg" alt="智能救援比赛场地平面图" width="420">
+</p>
+
 ## 运行平台
 
 MaixCAM Pro 是 Sipeed 基于算能 SG2002 SoC 的端侧 AI 视觉设备。官方硬件资料列出该平台包含 1 TOPS@INT8 NPU、1 GHz RISC-V C906 Linux 处理器、256 MB DDR3，以及 640 x 480 电容触摸屏。本项目通过 MaixPy v4 调用摄像头、NPU 推理、显示、触摸屏和 UART 接口。
@@ -101,19 +107,20 @@ AA BB X_H X_L Y_H Y_L TYPE AREA_H AREA_L STATUS CC
 
 以下结果均在 MaixCAM Pro 脱机运行环境下测得，主指标统一使用 `dual_buff=True`：
 
-| 测试对象 | 测量范围 | 结果 |
-| --- | --- | --- |
-| 视觉推理流水线 | 连续 300 次 `detect()`，不计显示、UART 和目标决策 | 平均 `25.094 ms`，等效 `39.85 FPS` |
-| 视觉推理流水线稳定性 | 同一轮测量 | 中位数 `25.366 ms`，P95 `25.771 ms`，范围 `23.393–29.208 ms` |
-| 完整比赛运行链路 | 预热 30 秒后统计 180 秒，18 个 10 秒窗口 | 平均 `29.98 FPS`，窗口范围 `29.95–30.02 FPS` |
+| 测试对象 | 平均 FPS |
+| --- | ---: |
+| 视觉推理流水线 | `39.85` |
+| 完整比赛运行链路 | `29.98` |
 
-同步单帧对照（`dual_buff=False`）平均耗时为 `41.704 ms`，仅用于理解双缓冲流水线与同步调用的差异，不作为默认部署指标。不同固件、摄像头环境和显示设置可能导致结果变化。
+以上结果均为对应测试口径下的平均 FPS；不同固件、摄像头环境和显示设置可能导致结果变化。
 
 比赛阶段的已确认记录为：模型训练阶段准确率 `99%`；模型量化后在数据集上的识别准确率 `96%`；完整运行链路平均 `29.98 FPS`，18 个 10 秒窗口范围为 `29.95–30.02 FPS`。这些数据对应相应测试口径，不替代上表中的当前复测结果。
 
 ## 运行截图
 
-<img src="assets/device-demo.jpg" alt="MaixCAM Pro 实机运行画面" width="460">
+<p align="center">
+  <img src="assets/device-demo.jpg" alt="MaixCAM Pro 实机运行画面" width="360">
+</p>
 
 ## 仓库结构
 
@@ -126,7 +133,8 @@ AA BB X_H X_L Y_H Y_L TYPE AREA_H AREA_L STATUS CC
 │   └── help_int8.cvimodel     # NPU 部署模型文件
 ├── assets/
 │   ├── app.png                # 应用图标
-│   └── device-demo.jpg        # 实机运行照片
+│   ├── device-demo.jpg        # 实机运行照片
+│   └── rescue_competition_field_layout.svg  # 比赛场地示意图
 ├── LICENSE
 └── README.md
 ```
