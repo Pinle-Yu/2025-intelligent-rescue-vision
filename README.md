@@ -85,13 +85,6 @@ flowchart LR
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `AA BB` | `X_H X_L` | `Y_H Y_L` | `TYPE` | `AREA_H AREA_L` | `STATUS` | `CC` |
 
-对应的字节顺序为：
-
-```text
-AA  BB  X_H  X_L  Y_H  Y_L  TYPE  AREA_H  AREA_L  STATUS  CC
-└─帧头─┘                         数据区                         └帧尾┘
-```
-
 | 字段 | 长度 | 说明 |
 | --- | ---: | --- |
 | `AA BB` | 2 B | 帧头，标记一帧数据开始 |

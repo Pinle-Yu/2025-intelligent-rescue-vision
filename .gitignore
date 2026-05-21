@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .vscode/
 .idea/
+.playwright-cli/
 *.log
 .DS_Store
 Thumbs.db
