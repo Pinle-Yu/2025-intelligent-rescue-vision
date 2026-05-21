@@ -1,0 +1,13 @@
+id: intelligent_rescue_vision
+name: Intelligent Rescue Vision
+name[zh]: 智能救援视觉
+version: 2.3.0
+icon: assets/app.png
+author: Pinle-Yu
+desc: YOLOv8 vision and UART decision module for a rescue robot
+desc[zh]: 面向智能救援机器人的 YOLOv8 视觉与串口决策模块
+files:
+  - main.py
+  - assets/app.png
+  - models/help_int8.mud
+  - models/help_int8.cvimodel
