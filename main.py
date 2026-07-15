@@ -7,6 +7,7 @@ from struct import pack
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(PROJECT_DIR, "models", "help_int8.mud")
 
+# 开启硬件双缓冲，提高连续推理吞吐率
 detector = nn.YOLOv8(model=MODEL_PATH, dual_buff=True)
 labels = ["red", "yellow", "black", "blue", "red_area", "blue_area"]
 BALL_LABELS = {"red", "yellow", "black", "blue"}
@@ -56,6 +57,7 @@ STATUS_PKT_CACHE = {}
 NONE_PKT_CACHE = {}
 
 
+# 缓存固定状态帧，避免在主循环中重复打包
 def make_status_pkt(status):
     pkt = STATUS_PKT_CACHE.get(status)
     if pkt is None:
@@ -169,7 +171,7 @@ while not app.need_exit():
 
     if data:
         if data == b'\xdd':  # 抓取完成信号
-            # 对 img 直接操作，用灰色矩形覆盖其他区域；再叠加坐标过滤，双重保险
+            # 只检查机械结构覆盖的有效抓取区域
             img.draw_rect(0, 0, specified_x, 480, color=COLOR_GRAY, thickness=-1)
             img.draw_rect(specified_x2, 0, 640 - specified_x2, 480, color=COLOR_GRAY, thickness=-1)
             img.draw_rect(specified_x, 0, specified_w, specified_y, color=COLOR_GRAY, thickness=-1)
@@ -248,6 +250,7 @@ while not app.need_exit():
                     target_obj = obj
                     break
         else:
+            # 根据当前策略和已抓取数量确定目标优先级
             use_current_target = (
                 (strategy == "N" and ball_count in (0, 1, 2)) or
                 (strategy == "P" and ball_count != 0)
